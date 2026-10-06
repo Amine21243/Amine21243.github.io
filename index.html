@@ -5,34 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
     <script>
-        // استخراج المسار أو البارامتر من الرابط الحالي
-        const path = window.location.pathname;
-        const segments = path.split("/").filter(Boolean);
-        
-        // إذا كان هناك اسم مقالة في الرابط (مثل: /garlic-parmesan-cheeseburger-bites/)
-        if (segments.length > 0) {
-            const slug = segments[segments.length - 1];
-            // التوجيه التلقائي إلى موقعك الأصلي مع نفس اسم المقالة
-            window.location.href = `https://schnellrezept.com/en/${slug}/`;
+        // قراءة اسم المقالة من الـ Hash أو المسار
+        const hash = window.location.hash.substring(1);
+        const pathSegments = window.location.pathname.split("/").filter(Boolean);
+        const slug = hash || (pathSegments.length > 0 ? pathSegments[pathSegments.length - 1] : "");
+
+        if (slug) {
+            window.location.replace(`https://schnellrezept.com/en/${slug}/`);
         } else {
-            // التوجيه إلى الصفحة الرئيسية للموقع إذا لم يوجد مسار
-            window.location.href = "https://schnellrezept.com/";
+            window.location.replace("https://schnellrezept.com/");
         }
     </script>
 </head>
 <body>
-    <p>Redirecting to article... If not redirected, <a id="fallback-link" href="https://schnellrezept.com/">click here</a>.</p>
-    <script>
-        // تحديث رابط الاحتياط تلقائياً للزوار الذين لديهم جافاسكريبت معطل
-        const path = window.location.pathname;
-        const segments = path.split("/").filter(Boolean);
-        if (segments.length > 0) {
-            const slug = segments[segments.length - 1];
-            const target = `https://schnellrezept.com/en/${slug}/`;
-            document.getElementById("fallback-link").href = target;
-            document.getElementById("fallback-link").innerText = target;
-            window.location.replace(target);
-        }
-    </script>
+    <p>Redirecting... Please wait.</p>
 </body>
 </html>
