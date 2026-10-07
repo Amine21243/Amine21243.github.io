@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script>
+        // قراءة اسم المقالة من الـ Hash (مثال: #sea-bass-recipe)
+        const hash = window.location.hash.substring(1);
+        
+        if (hash) {
+            // التوجيه الفوري إلى المقالة في موقعك الأصلي
+            window.location.replace(`https://schnellrezept.com/en/${hash}/`);
+        } else {
+            window.location.replace("https://schnellrezept.com/");
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecting to your article... Please wait.</p>
+</body>
+</html>
